@@ -9,6 +9,25 @@ from rest_framework import status
 import requests
 
 
+@csrf_exempt
+def searchapi(request):
+    try:
+        
+        getEmployeeCode = int( request.POST.get("empcode") )
+        employees = Employee.objects.get(empcode=getEmployeeCode)
+        employee_serializer = EmployeeSerializer(employees)
+        return render(request,'search.html',{"data":employee_serializer.data})
+        # return JsonResponse(employee_serializer.data, safe=False, status=status.HTTP_200_OK)
+
+    except Employee.DoesNotExist: 
+        return HttpResponse("Invalid Employee Id", status=status.HTTP_404_NOT_FOUND)
+    
+       
+
+def search_view_employees(request):
+
+    return render(request,'search.html')
+
 def update_view_employees(request):
     return render(request, 'update.html')
     

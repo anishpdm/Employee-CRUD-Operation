@@ -1,0 +1,77 @@
+{% extends 'header.html' %}
+{% block myContent %}
+<div class="container">
+         <div class="row">
+             <div class="col col-12 col-sm-2 col-md-2">
+
+             </div>
+             <div class="col col-12 col-sm-8 col-md-8">
+
+              <form action="http://127.0.0.1:8000/employee/searchapi/" method="post">
+
+                  <table class="table table-borderless">
+
+                    <tr>
+                        <td>Employee Code </td>
+                        <td> <input name="empcode" type="number" class="form-control"> </td>
+                    </tr>
+                    
+                  
+                  <tr>
+                        <td></td>
+                        <td>
+                          <center>  <button type="submit"  class="btn btn-success">SEARCH</button></center>
+                        </td>
+                    </tr>
+                </table>
+
+              </form>
+
+
+              {% if data %}
+
+              <table class="table">
+                  <tr>
+                      <td> Name </td>
+                      <td>{{data.name}} </td>
+                   
+                  </tr>
+
+                   <tr>
+                      <td> Salary </td>
+                      <td>{{data.empsalary}} </td>
+                   
+                  </tr>
+
+                   <tr>
+                      <td> Designation </td>
+                      <td>{{data.empdesig}} </td>
+                   
+                  </tr>
+              </table>
+
+
+
+              {% endif %}
+
+
+            </div>
+             <div class="col col-12 col-sm-2 col-md-2">
+
+                
+             </div>
+         </div>
+
+ 
+
+
+     </div>
+
+
+
+
+
+{% endblock  %}
+
+
+     
