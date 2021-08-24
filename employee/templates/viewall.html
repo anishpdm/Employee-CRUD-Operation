@@ -1,0 +1,45 @@
+{% extends 'header.html'%}
+
+{% block myContent  %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+        <div class="col col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+
+<table class="table table-striped">
+<thead class="table-primary">
+    <tr>
+        <th >Employee Code </th>
+        <th > Name </th>
+        <th> Designation </th>
+        <th> Salary </th>
+    </tr>
+
+</thead>
+
+
+<tbody>
+
+    {% for i in data  %}
+<tr>
+    <td> {{ i.empcode }} </td>
+    <td> {{ i.name }} </td>
+    <td> {{ i.empdesig  }} </td>
+    <td> {{ i.empsalary }} </td>
+</tr>
+  {%  endfor  %}
+
+</tbody>
+
+</table>
+
+
+        </div>
+        <div class="col col-12 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+    </div>
+</div>
+
+{% endblock   %}
+
