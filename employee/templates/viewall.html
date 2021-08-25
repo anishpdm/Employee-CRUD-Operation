@@ -13,8 +13,8 @@
     <tr>
         <th >Employee Code </th>
         <th > Name </th>
-        <th> Designation </th>
-        <th> Salary </th>
+        <!-- <th> Designation </th>
+        <th> Salary </th> -->
     </tr>
 
 </thead>
@@ -25,9 +25,9 @@
     {% for i in data  %}
 <tr>
     <td> {{ i.empcode }} </td>
-    <td> {{ i.name }} </td>
-    <td> {{ i.empdesig  }} </td>
-    <td> {{ i.empsalary }} </td>
+    <td> <a href=""> {{ i.name }} </a> </td>
+    <!-- <td> {{ i.empdesig  }} </td>
+    <td> {{ i.empsalary }} </td> -->
 </tr>
   {%  endfor  %}
 

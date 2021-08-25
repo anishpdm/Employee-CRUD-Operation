@@ -6,12 +6,12 @@
         <div class="col col-12 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
         <div class="col col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
 
-<form action="http://localhost:8000/employee/Update_Search_api/" method="post">
+<form action="http://localhost:8000/employee/Delete_Search_api/" method="post">
 
     <table class="table table-borderless">
     <tr>
         <td> Employee Code </td>
-        <td> <input name="empcode" type="text" class="form-control"></td>
+        <td> <input placeholder="Enter employee Code" name="empcode" type="text" class="form-control"></td>
     </tr>
     <tr>
         <td></td>
@@ -21,7 +21,7 @@
 
 </form>
      {% if data  %}
-     <form action="http://localhost:8000/employee/viewemployee/updatebtn/" method="post">
+     <form action="http://localhost:8000/employee/viewemployee/deletebtn/" method="post">
      <table class="table table-borderless">
       {% for i in data %}
 
@@ -33,28 +33,28 @@
 
   <tr>
              <td> Emp Code </td>
-             <td> <input type="text" value="{{i.empcode }}" class="form-control" name="newempcode" > </td>
+             <td> <input type="text" value="{{i.empcode }}" class="form-control" name="newempcode" readonly> </td>
          </tr>
          
          <tr>
              <td> Name </td>
-             <td> <input type="text" value="{{i.name }}" class="form-control" name="newname"> </td>
+             <td> <input type="text" value="{{i.name }}" class="form-control" name="newname" readonly> </td>
          </tr>
 
             <tr>
              <td> Employee Designation  </td>
-             <td><input type="text" value="{{i.empdesig }}" class="form-control" name="newempdesig" >  </td>
+             <td><input type="text" value="{{i.empdesig }}" class="form-control" name="newempdesig" readonly>  </td>
          </tr>
 
 
             <tr>
              <td> Employee Salary  </td>
-             <td><input type="text" value="{{i.empsalary }}" class="form-control" name="newempsalary" >  </td>
+             <td><input type="text" value="{{i.empsalary }}" class="form-control" name="newempsalary" readonly>  </td>
          </tr>
 
 <tr>
     <td></td>
-    <td>         <button class="btn btn-warning"type="submit"> Update </button>
+    <td>         <button class="btn btn-danger"type="submit"> DELETE </button>
 </td>
 </tr>
          {% endfor %}
