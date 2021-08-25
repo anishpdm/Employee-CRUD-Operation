@@ -72,12 +72,19 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'EmployeeDb',
         'CLIENT': {
-            'host': 'localhost',
-            'port': 27017,
-            'username': '',
-            'password':''
-  
+            'host': 'mongodb+srv://anish:anish@cluster0.5mwqr.mongodb.net',
+            # 'port': 27017,
+            'username': 'anish',
+            'password': 'anish'
+            
         }
+        # 'CLIENT': {
+        #     'host': 'localhost',
+        #     'port': 27017,
+        #     'username': '',
+        #     'password':''
+  
+        # }
     }
 }
 
