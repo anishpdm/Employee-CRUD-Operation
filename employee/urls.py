@@ -2,6 +2,11 @@ from django.urls import path, include
 from employee import views
 
 urlpatterns = [
+
+#HomePage
+
+ path('', views.homepage, name='homepage'),
+
    
 #  Views
     path('addview/', views.add_employee_view, name='add_employee_view'),
