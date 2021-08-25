@@ -116,7 +116,7 @@ def update_view_employees(request):
     
 def view_all_employees(request):
 
-    fetchdata=requests.get("http://localhost:8000/employee/viewall/").json()
+    fetchdata=requests.get("https://mydjangotestapp1.herokuapp.com/employee/viewall/").json()
 
     return render(request,'viewall.html',{"data":fetchdata})
 
