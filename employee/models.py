@@ -7,4 +7,6 @@ class Employee(models.Model):
     empcode = models.CharField(max_length=50,default='No NAME',blank=True)
     empdesig = models.CharField(max_length=50)
     empsalary = models.CharField(max_length=50, default='No NAME', blank=True)
+    id = models.AutoField(auto_created=True, primary_key=True, serialize=False)
+    status=models.IntegerField(default=1)
    

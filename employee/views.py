@@ -9,6 +9,75 @@ from rest_framework import status
 import requests
 
 
+def deleteemployeescreen(request):
+    return render(request,"delete.html")
+
+@csrf_exempt
+def delete_data_read(request):
+    
+    getnewid = request.POST.get("newid")
+    getnewempcode=request.POST.get("newempcode")
+    getnewsalary=request.POST.get("newsalary")
+    getnewdesig = request.POST.get("newdesig")
+    getName = request.POST.get("newname")
+    mydata = {'name': getName, 'empcode': getnewempcode, 'empdesig': getnewdesig, 'empsalary': getnewsalary,'status':0}
+    jsondata=json.dumps(mydata)
+    ApiLink = "http://localhost:8000/employee/viewemployee/" + getnewid
+    x = requests.put(ApiLink, data=jsondata)
+    print(x)
+    return HttpResponse("Data has deleted succesfully")
+    
+    
+
+
+@csrf_exempt
+def delete_search_api(request):
+    try:
+        
+        getEmployeeCode = int( request.POST.get("empcode") )
+        employees = Employee.objects.get(empcode=getEmployeeCode)
+        employee_serializer = EmployeeSerializer(employees)
+        return render(request,'delete.html',{"data":employee_serializer.data})
+        # return JsonResponse(employee_serializer.data, safe=False, status=status.HTTP_200_OK)
+
+    except Employee.DoesNotExist: 
+        return HttpResponse("Invalid Employee Id", status=status.HTTP_404_NOT_FOUND)
+    
+
+
+
+@csrf_exempt
+def update_data_read(request):
+    
+    getnewid = request.POST.get("newid")
+    
+    getnewempcode=request.POST.get("newempcode")
+    getnewsalary=request.POST.get("newsalary")
+    getnewdesig = request.POST.get("newdesig")
+    getName = request.POST.get("newname")
+    mydata = {'name': getName, 'empcode': getnewempcode, 'empdesig': getnewdesig, 'empsalary': getnewsalary}
+    jsondata=json.dumps(mydata)
+    ApiLink = "http://localhost:8000/employee/viewemployee/" + getnewid
+    requests.put(ApiLink, data=jsondata)
+    return HttpResponse("Data has updated succesfully")
+    
+    
+
+
+@csrf_exempt
+def update_search_api(request):
+    try:
+        
+        getEmployeeCode = int( request.POST.get("empcode") )
+        employees = Employee.objects.get(empcode=getEmployeeCode)
+        employee_serializer = EmployeeSerializer(employees)
+        return render(request,'update.html',{"data":employee_serializer.data})
+        # return JsonResponse(employee_serializer.data, safe=False, status=status.HTTP_200_OK)
+
+    except Employee.DoesNotExist: 
+        return HttpResponse("Invalid Employee Id", status=status.HTTP_404_NOT_FOUND)
+    
+
 @csrf_exempt
 def searchapi(request):
     try:
@@ -75,7 +144,7 @@ def employee_details(request, fetchid):
 @csrf_exempt
 def employee_list(request):
     if (request.method == "GET"):
-        employees = Employee.objects.all()
+        employees = Employee.objects.filter(status=1)
         employee_serializer = EmployeeSerializer(employees,many=True)
         return JsonResponse(employee_serializer.data, safe=False)
         
@@ -85,13 +154,6 @@ def employee_list(request):
 def employee_create(request):
     if (request.method == "POST"):
 
-        # getName = request.POST.get("name")
-        # getEmployeeCode = int( request.POST.get("empcode") )
-        # getEmployeeDesignation = request.POST.get("empdesig")
-        # getEmployeeSalary = int(request.POST.get("empsalary") )
-
-        # mydata = {'name': getName, 'empcode': getEmployeeCode, 'empdesig': getEmployeeDesignation, 'empsalary': getEmployeeSalary}
-        # mydata=JSONParser().parse(request)
         employee_serialize = EmployeeSerializer(data=request.POST)
         if (employee_serialize.is_valid()):
             employee_serialize.save()  #Save to Db

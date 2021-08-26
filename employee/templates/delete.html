@@ -7,7 +7,7 @@
              </div>
              <div class="col col-12 col-sm-8 col-md-8">
 
-              <form action="http://127.0.0.1:8000/employee/update_search_api/" method="post">
+              <form action="http://127.0.0.1:8000/employee/delete_search_api/" method="post">
 
                   <table class="table table-borderless">
 
@@ -30,7 +30,7 @@
 
               {% if data %}
 
-           <form action="http://127.0.0.1:8000/employee/update_action_api/" method="post">
+           <form action="http://127.0.0.1:8000/employee/delete_action_api/" method="post">
    <table class="table">
 
                  <tr>
@@ -41,31 +41,31 @@
 
                  <tr>
                       <td> Employee Code </td>
-                      <td>  <input name="newempcode" value="{{data.empcode}}" type="text" class="form-control" readonly> </td>
+                      <td>  <input readonly name="newempcode" value="{{data.empcode}}" type="text" class="form-control" > </td>
                    
                   </tr>
 
 
                   <tr>
                       <td> Name </td>
-                      <td>  <input name="newname" value="{{data.name}}" type="text" class="form-control"> </td>
+                      <td>  <input  name="newname" value="{{data.name}}" type="text" class="form-control"> </td>
                    
                   </tr>
 
                    <tr>
                       <td> Salary </td>
-                      <td><input name="newsalary" value="{{data.empsalary}}" type="text" class="form-control"> </td>
+                      <td><input readonly name="newsalary" value="{{data.empsalary}}" type="text" class="form-control"> </td>
                    
                   </tr>
 
                    <tr>
                       <td> Designation </td>
-                      <td><input name="newdesig" value="{{data.empdesig}}" type="text" class="form-control"> </td>
+                      <td><input readonly name="newdesig" value="{{data.empdesig}}" type="text" class="form-control"> </td>
                    
                   </tr>
     <tr>
         <td></td>
-        <td> <button type="submit" class="btn btn-warning"> UPDATE </button> </td>
+        <td> <button type="submit" class="btn btn-danger"> DELETE </button> </td>
     </tr>
 
               </table>
