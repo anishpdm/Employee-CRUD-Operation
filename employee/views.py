@@ -9,6 +9,42 @@ from rest_framework import status
 import requests
 
 
+@csrf_exempt
+def login_check(request):
+
+
+
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+    
+    # mydata = {'username': username, 'password': password}
+    # jsondata=json.dumps(mydata)
+    try:
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        getEmployee = Employee.objects.filter(username=username,password=password)
+        employee_serialiser = EmployeeSerializer(getEmployee, many=True)
+        if (employee_serialiser.data):
+            
+            for i in employee_serialiser.data:
+                
+                x=i["name"]
+                print(x)
+ 
+            request.session['uname']= x
+            return render(request, "welcome.html", {"data": employee_serialiser.data})
+        else:
+            return HttpResponse("Invalid Credentials") 
+
+        # return JsonResponse(employee_serialiser.data,safe=False,status=status.HTTP_200_OK)
+
+    except Employee.DoesNotExist:
+        return HttpResponse("Invalid Emp Code", status=status.HTTP_404_NOT_FOUND)
+        
+    except:
+        return HttpResponse("Something went wrong")    
+
+  
 
 
 @csrf_exempt
@@ -108,6 +144,11 @@ def searchapi(request):
     except:
         return HttpResponse("Something went wrong")    
 
+
+def loginview(request):
+    return render(request, 'login.html')
+    
+
 def delete_view_employees(request):
     return render(request, 'delete.html')
     
@@ -116,7 +157,7 @@ def update_view_employees(request):
     
 def view_all_employees(request):
 
-    fetchdata=requests.get("https://mydjangotestapp1.herokuapp.com/employee/viewall/").json()
+    fetchdata=requests.get("http://localhost:8000/employee/viewall/").json()
 
     return render(request,'viewall.html',{"data":fetchdata})
 
@@ -176,6 +217,7 @@ def employee_list(request):
 @csrf_exempt
 def employee_create(request):
     if (request.method == "POST"):
+        request.FILES['myfile']
 
         # getName = request.POST.get("name")
         # getEmployeeCode = int( request.POST.get("empcode") )

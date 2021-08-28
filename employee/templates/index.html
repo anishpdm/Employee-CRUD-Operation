@@ -7,9 +7,14 @@
              </div>
              <div class="col col-12 col-sm-8 col-md-8">
 
-              <form action="https://mydjangotestapp1.herokuapp.com/employee/add/" method="post">
+              <form enctype="multipart/form-data" action="http://localhost:8000/employee/add/" method="post">
 
                   <table class="table table-borderless">
+
+                    <tr>
+                        <td> Select Image </td>
+                        <td> <input name="myfile" type="file" class="form-control">  </td>
+                    </tr>
 
                     <tr>
                         <td>Employee Code </td>
@@ -29,6 +34,13 @@
                         <td> <input name="empsalary" type="number" class="form-control"></td>
                     </tr>
                   
+                      <tr>
+                        <td>Username </td>
+                        <td> <input name="username" type="text" class="form-control"></td>
+                    </tr>  <tr>
+                        <td>Password </td>
+                        <td> <input name="password" type="text" class="form-control"></td>
+                    </tr>
                   
                   <tr>
                         <td></td>
