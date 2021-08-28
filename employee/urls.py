@@ -5,7 +5,7 @@ urlpatterns = [
 
 #HomePage
 
- path('', views.homepage, name='homepage'),
+#  path('', views.homepage, name='homepage'),
 
    
 #  Views
